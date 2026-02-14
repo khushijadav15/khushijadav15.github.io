@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f2; /* Light pink background */
+            color: #d63384; /* Dark pink text */
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling from button jumps */
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .buttons {
+            margin: 20px 0;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #yes-btn {
+            background-color: #ff69b4; /* Hot pink */
+            color: white;
+        }
+        #yes-btn:hover {
+            background-color: #ff1493; /* Deeper pink */
+        }
+        #no-btn {
+            background-color: #ffb3ba; /* Light red */
+            color: white;
+            position: absolute; /* Allows absolute positioning for jumping */
+        }
+        #no-btn:hover {
+            /* This will be overridden by JS, but keeps it styled */
+        }
+    </style>
+</head>
+<body>
+    <h1>Khushi, Will You Be My Valentine? 💖</h1>
+    <p>I promise to love you forever... please say yes?</p>
+    
+    <!-- Buttons -->
+    <div class="buttons">
+        <button id="yes-btn">Yes! 😍</button>
+        <button id="no-btn">No 😢</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+
+        // Function to make the "No" button jump to a random position
+        function jumpNoButton() {
+            const viewportWidth = window.innerWidth - 200; // Subtract button width to keep it on screen
+            const viewportHeight = window.innerHeight - 100; // Subtract button height
+            const randomX = Math.random() * viewportWidth;
+            const randomY = Math.random() * viewportHeight;
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Jump on hover
+        noBtn.addEventListener('mouseover', jumpNoButton);
+
+        // Also jump on click (for mobile or stubborn users)
+        noBtn.addEventListener('click', jumpNoButton);
+
+        // Handle "Yes" click: Update text and hide buttons
+        yesBtn.addEventListener('click', function() {
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('p').textContent = "Yay! You're my Valentine! 🎉";
+        });
+
+        // Initial random position for "No" button
+        jumpNoButton();
+    </script>
+</body>
+</html>
